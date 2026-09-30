@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巴巴托斯利克操作系统 (Babatoslick OS) - 官方文档与维基</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#22c55e',
+              600: '#16a34a',
+              900: '#14532d',
+            },
+            cyanGlow: '#00f2fe',
+            purpleGlow: '#4facfe',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #0b0f17;
+      color: #e2e8f0;
+    }
+    .glow-effect {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    }
+    .code-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .code-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-cyan-500/20">
+          巴
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-wide bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Babatoslick OS</span>
+          <span class="text-xs block text-slate-400">官方技术文档</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#overview" class="hover:text-cyan-400 transition-colors">系统概述</a>
+        <a href="#keyboard" class="hover:text-cyan-400 transition-colors">输入法体验</a>
+        <a href="#language-guide" class="hover:text-cyan-400 transition-colors">语言与区域设置</a>
+        <a href="#faq" class="hover:text-cyan-400 transition-colors">常见问题</a>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-950 text-cyan-300 border border-cyan-800">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 mr-1.5 animate-pulse"></span>
+          v4.2 稳定版
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    
+    <section id="overview" class="relative overflow-hidden rounded-3xl bg-slate-900/60 border border-slate-800 p-8 md:p-12 glow-effect">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="max-w-3xl space-y-4">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+          极简、纯粹且直观的 <br>
+          <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Babatoslick OS 架构</span>
+        </h1>
+        <p class="text-slate-300 text-lg leading-relaxed">
+          欢迎查阅 巴巴托斯利克操作系统 (Babatoslick OS) 开发者与用户官方指南。本系统专为追求极致底层掌控力与清晰逻辑架构的用户设计。所有配置均采用透明化的系统文件交互方式，无需复杂的图形二次封装，即可轻松完成全盘微调。
+        </p>
+        <div class="pt-2 flex flex-wrap gap-4 text-sm text-slate-400">
+          <div class="flex items-center space-x-2 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50">
+            <i class="fa-solid fa-microchip text-cyan-400"></i>
+            <span>微内核全架构支持</span>
+          </div>
+          <div class="flex items-center space-x-2 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50">
+            <i class="fa-solid fa-code text-cyan-400"></i>
+            <span>透明化底层配置文件</span>
+          </div>
+          <div class="flex items-center space-x-2 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50">
+            <i class="fa-solid fa-bolt text-cyan-400"></i>
+            <span>硬件直通驱动引擎</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="keyboard" class="space-y-6">
+      <div class="border-l-4 border-cyan-400 pl-4">
+        <h2 class="text-2xl font-bold text-white">系统默认输入法体验 preview</h2>
+        <p class="text-slate-400 text-sm mt-1">内置原生仓颉/注音底层映射键盘，提供极佳的硬件反馈与按键精度。</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Interactive Smartphone UI Frame -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-[340px] bg-black rounded-[40px] p-3 border-4 border-slate-800 shadow-2xl shadow-cyan-950/30 relative overflow-hidden">
+            <!-- Screen Area -->
+            <div class="bg-slate-950 rounded-[30px] overflow-hidden flex flex-col justify-between h-[580px] border border-slate-800/50">
+              
+              <!-- Phone Status Bar -->
+              <div class="bg-black/90 px-5 py-2 flex justify-between items-center text-xs text-slate-300 font-medium select-none">
+                <span>14:27</span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] text-slate-400">Babatoslick</span>
+                  <i class="fa-solid fa-wifi text-xs"></i>
+                  <div class="flex items-center space-x-1">
+                    <span class="text-[10px]">78%</span>
+                    <i class="fa-solid fa-battery-three-quarters text-xs text-green-400"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- App Display Area -->
+              <div class="p-4 flex-grow flex flex-col justify-between">
+                <div class="space-y-3">
+                  <div class="text-xs text-slate-400 font-mono">系统备忘录 - babat_note.txt</div>
+                  <div id="phoneDisplay" class="min-h-[100px] p-3 rounded-xl bg-slate-900 border border-slate-800 text-cyan-300 font-mono text-sm break-all">
+                    点击下方键盘进行输入...
+                  </div>
+                </div>
+                <div class="text-center text-[11px] text-slate-500">
+                  当前映射: 原生仓颉/注音核心映射卡
+                </div>
+              </div>
+
+              <!-- Cangjie / Zhuyin Virtual Keyboard Component -->
+              <div class="bg-slate-900/90 border-t border-slate-800 p-2 space-y-1.5 select-none">
+                <!-- Top Keyboard Bar -->
+                <div class="flex justify-between items-center text-[10px] text-slate-400 px-1 pb-1">
+                  <span>仓颉 (Standard)</span>
+                  <button id="clearBtn" class="text-cyan-400 hover:underline">清空</button>
+                </div>
+                <!-- Key Rows -->
+                <div class="grid grid-cols-10 gap-1 text-center font-medium">
+                  <button onclick="typeKey('手')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">手</button>
+                  <button onclick="typeKey('田')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">田</button>
+                  <button onclick="typeKey('水')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">水</button>
+                  <button onclick="typeKey('口')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">口</button>
+                  <button onclick="typeKey('廿')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">廿</button>
+                  <button onclick="typeKey('卜')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">卜</button>
+                  <button onclick="typeKey('山')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">山</button>
+                  <button onclick="typeKey('戈')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">戈</button>
+                  <button onclick="typeKey('人')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">人</button>
+                  <button onclick="typeKey('心')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">心</button>
+                </div>
+
+                <div class="grid grid-cols-9 gap-1 text-center font-medium px-2">
+                  <button onclick="typeKey('日')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">日</button>
+                  <button onclick="typeKey('中')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">中</button>
+                  <button onclick="typeKey('月')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">月</button>
+                  <button onclick="typeKey('木')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">木</button>
+                  <button onclick="typeKey('一')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">一</button>
+                  <button onclick="typeKey('蛇')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">蛇</button>
+                  <button onclick="typeKey('火')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">火</button>
+                  <button onclick="typeKey('土')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">土</button>
+                  <button onclick="typeKey('竹')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">竹</button>
+                </div>
+
+                <div class="grid grid-cols-7 gap-1 text-center font-medium px-4">
+                  <button onclick="typeKey('大')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">大</button>
+                  <button onclick="typeKey('金')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">金</button>
+                  <button onclick="typeKey('女')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">女</button>
+                  <button onclick="typeKey('十')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">十</button>
+                  <button onclick="typeKey('弓')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">弓</button>
+                  <button onclick="typeKey('竹')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">竹</button>
+                  <button onclick="typeKey('重')" class="bg-slate-800 hover:bg-slate-700 active:bg-cyan-600 text-white py-2 rounded text-xs transition">重</button>
+                </div>
+
+                <div class="flex gap-1 pt-1">
+                  <button onclick="typeKey(' ')" class="flex-grow bg-slate-800 hover:bg-slate-700 text-xs py-2 rounded text-slate-300">空格</button>
+                  <button onclick="typeKey('\n')" class="w-16 bg-cyan-600 hover:bg-cyan-500 text-xs py-2 rounded text-white font-bold">换行</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Description Box for Keyboard -->
+        <div class="lg:col-span-7 bg-slate-900/40 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <h3 class="text-xl font-semibold text-cyan-400">输入法映射与字形支持</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Babatoslick OS 内置了极具特色的基础编码映射机制。系统默认直接链接硬件层级的字符映射。如果您需要调整系统语言或更改字符映射逻辑，可按照标准流程修改对应的底层配置文件。
+          </p>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-400 space-y-2">
+            <div class="font-semibold text-slate-200">提示：</div>
+            <p>系统按键反馈已通过微内核时钟精准同步，每次敲击均可提供毫秒级的指令响应。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="language-guide" class="space-y-6">
+      <div class="border-l-4 border-cyan-400 pl-4">
+        <h2 class="text-2xl font-bold text-white">显示语言配置指南</h2>
+        <p class="text-slate-400 text-sm mt-1">按标准步骤修改配置文件，即可完成系统全域语言映射转换。</p>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-8">
+        
+        <!-- Step 1 -->
+        <div class="flex gap-4 items-start">
+          <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center justify-center font-bold text-sm shrink-0">
+            1
+          </div>
+          <div class="space-y-3 w-full">
+            <h3 class="text-lg font-semibold text-white">定位系统语言配置文件</h3>
+            <p class="text-sm text-slate-300">
+              使用系统内置的文件管理器或终端，打开以下标准语言映射文件路径：
+            </p>
+            
+            <!-- Code Snippet Container -->
+            <div class="relative bg-slate-950 rounded-xl border border-slate-800 p-4 font-mono text-xs sm:text-sm text-cyan-300 flex items-center justify-between gap-4 overflow-hidden group">
+              <div class="overflow-x-auto code-scroll whitespace-nowrap py-1" id="filePathText">
+                /system/root/vendor/firmware/locale/core_lang_pack_v4.2/config/kernel_lang/BabatToBat/locales/zh_CN/sys_lang_mapping.bat
+              </div>
+              <button onclick="copyPath()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition text-xs flex items-center space-x-1">
+                <i class="fa-regular fa-copy"></i>
+                <span id="copyBtnText">复制路径</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex gap-4 items-start">
+          <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center justify-center font-bold text-sm shrink-0">
+            2
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-semibold text-white">转换配置文件格式</h3>
+            <p class="text-sm text-slate-300">
+              调用系统自带的 <code class="bg-slate-800 px-2 py-0.5 rounded text-cyan-300 font-mono text-xs">BatToBabat</code> 转换工具，将上述 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">.bat</code> 文件转换为可编辑的 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">.babat</code> 二进制文本格式。
+            </p>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-slate-400">
+              $ BatToBabat --input sys_lang_mapping.bat --output sys_lang_mapping.babat
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 & 4 -->
+        <div class="flex gap-4 items-start">
+          <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center justify-center font-bold text-sm shrink-0">
+            3
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-semibold text-white">编辑第 75624 行配置</h3>
+            <p class="text-sm text-slate-300">
+              在文本编辑器中打开生成的 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">.babat</code> 文件，向下滚动并精确定位至 **第 75624 行**。
+            </p>
+            <p class="text-sm text-slate-300">
+              在该行中，将中文键盘映射字符依次替换为您目标语言的字符序列。
+            </p>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-slate-400 space-y-1">
+              <div class="text-slate-600">// 行 75624: 字符映射表 (Character Mapping Table)</div>
+              <div><span class="text-pink-400">MAP_KEY_ROW_01</span> = <span class="text-cyan-300">"手田水口廿卜山戈人心"</span> &#8594; 替换为目标语言映射</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 & 6 -->
+        <div class="flex gap-4 items-start">
+          <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center justify-center font-bold text-sm shrink-0">
+            4
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-semibold text-white">打包与重载系统</h3>
+            <p class="text-sm text-slate-300">
+              保存更改后的 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">.babat</code> 文件，再次运行 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">BatToBabat</code> 工具将其逆向转换为 <code class="text-xs font-mono bg-slate-800 px-1.5 py-0.5 rounded">.bat</code> 格式并覆写原文件。
+            </p>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-slate-400 mb-2">
+              $ BatToBabat --pack sys_lang_mapping.babat --output sys_lang_mapping.bat
+            </div>
+            <p class="text-sm text-slate-300">
+              最后，重新启动您的移动设备。系统将在开机引导阶段自动载入全新的语言配置。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="faq" class="space-y-6">
+      <div class="border-l-4 border-cyan-400 pl-4">
+        <h2 class="text-2xl font-bold text-white">常见问题与说明</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-5 space-y-2">
+          <h3 class="text-base font-semibold text-cyan-300">为什么采用文件直接配置的方式？</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Direct-File 配置模式去除了冗余的 UI 设置层，能够直接减少系统内存占用，并避免设置项在后台常驻进程。这是直观且高效的设计方案。
+          </p>
+        </div>
+
+        <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-5 space-y-2">
+          <h3 class="text-base font-semibold text-cyan-300">如果修改后字符显示不匹配怎么办？</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            请确认在编辑第 75624 行时未破坏原有的 UTF-8 编码结构。确保通过 BatToBabat 正确打包后重启系统即可恢复。
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>© 2026 Babatoslick OS 项目开源社区。保留所有权利。</p>
+      <p class="text-slate-600">巴巴托斯利克操作系统 - 简洁、自然、高效的移动操作系统</p>
+    </div>
+  </footer>
+
+  <script>
+    // Keyboard Interactive Demo Logic
+    const display = document.getElementById('phoneDisplay');
+    let isDefaultState = true;
+
+    function typeKey(char) {
+      if (isDefaultState) {
+        display.innerText = '';
+        isDefaultState = false;
+      }
+      display.innerText += char;
+    }
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      display.innerText = '点击下方键盘进行输入...';
+      isDefaultState = true;
+    });
+
+    // Copy Path Function
+    function copyPath() {
+      const pathText = document.getElementById('filePathText').innerText.trim();
+      const btnText = document.getElementById('copyBtnText');
+
+      const tempInput = document.createElement('input');
+      tempInput.value = pathText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      btnText.innerText = '已复制！';
+      setTimeout(() => {
+        btnText.innerText = '复制路径';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
